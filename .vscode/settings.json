@@ -1,0 +1,23 @@
+{
+    "explorer.compactFolders": false,
+    "python.analysis.autoFormatStrings": true,
+    "[python]": {
+        "files.autoSave": "onFocusChange",
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "never",
+            "source.organizeImports": "always"
+        },
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/__pycache__": true,
+        "**/desktop.ini": true,
+    },
+    "explorerExclude.backup": {}
+}

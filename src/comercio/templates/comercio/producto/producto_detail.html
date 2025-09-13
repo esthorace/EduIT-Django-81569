@@ -1,0 +1,134 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ object.nombre }} - Detalle de Producto{% endblock title %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-primary text-white">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="card-title mb-0">
+                        <i class="bi bi-box-seam me-2"></i>{{ object.nombre }}
+                    </h3>
+                    <span class="badge bg-light text-primary fs-6">{{ object.producto_categoria }}</span>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <div class="row g-4">
+                    <!-- Información Principal -->
+                    <div class="col-md-8">
+                        <h5 class="text-primary mb-3">
+                            <i class="bi bi-info-circle me-2"></i>Información del Producto
+                        </h5>
+                        
+                        <div class="mb-4">
+                            <h6 class="text-muted mb-2">Descripción</h6>
+                            <p class="text-dark">{{ object.descripcion|default:"Sin descripción disponible" }}</p>
+                        </div>
+                        
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-tags text-primary me-3"></i>
+                                    <div>
+                                        <small class="text-muted d-block">Categoría</small>
+                                        <strong>{{ object.producto_categoria }}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-rulers text-success me-3"></i>
+                                    <div>
+                                        <small class="text-muted d-block">Unidad de Medida</small>
+                                        <strong>{{ object.unidad_medida }}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Información de Stock y Precio -->
+                    <div class="col-md-4">
+                        <div class="card bg-light">
+                            <div class="card-body text-center">
+                                <h5 class="text-primary mb-4">
+                                    <i class="bi bi-graph-up me-2"></i>Estadísticas
+                                </h5>
+                                
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="text-muted">Stock Actual</span>
+                                        <span class="badge bg-{% if object.stock > 10 %}success{% elif object.stock > 0 %}warning{% else %}danger{% endif %} fs-6">
+                                            {{ object.stock }}
+                                        </span>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-{% if object.stock > 10 %}success{% elif object.stock > 0 %}warning{% else %}danger{% endif %}" 
+                                             style="width: {% if object.stock > 50 %}100{% else %}{{ object.stock|floatformat:0|add:0|mul:2 }}{% endif %}%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted">Precio Unitario</span>
+                                        <span class="h4 text-success mb-0">${{ object.precio }}</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted">Valor Total</span>
+                                        <span class="h5 text-primary mb-0">${{ object.precio|floatformat:2|add:0|mul:object.stock|floatformat:2 }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información de Fechas -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h6 class="text-muted mb-3">
+                                    <i class="bi bi-clock me-2"></i>Información de Fechas
+                                </h6>
+                                <div class="row text-center">
+                                    <div class="col-md-6">
+                                        <small class="text-muted d-block">Última Actualización</small>
+                                        <strong>{{ object.updated_at|date:"d/m/Y H:i" }}</strong>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <small class="text-muted d-block">Fecha de Creación</small>
+                                        <strong>{{ object.created_at|date:"d/m/Y H:i" }}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Acciones -->
+            <div class="card-footer bg-light">
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'comercio:producto_list' %}" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left me-2"></i>Volver a la Lista
+                    </a>
+                    <div class="btn-group">
+                        <a href="{% url 'comercio:producto_update' object.id %}" class="btn btn-warning">
+                            <i class="bi bi-pencil me-2"></i>Editar
+                        </a>
+                        <a href="{% url 'comercio:producto_delete' object.id %}" class="btn btn-danger">
+                            <i class="bi bi-trash me-2"></i>Eliminar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

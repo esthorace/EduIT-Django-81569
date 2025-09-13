@@ -1,0 +1,122 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ titulo }} - Django App{% endblock title %}
+
+{% block content %}
+<!-- Header Section -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="text-center">
+            <h1 class="display-4 fw-bold text-primary mb-3">
+                <i class="bi bi-shop me-3"></i>{{ titulo }}
+            </h1>
+            <p class="lead text-muted">
+                Gestiona tu inventario de productos y categorías de manera eficiente
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Action Cards -->
+<div class="row g-4 mb-5">
+    <!-- Categorías Section -->
+    <div class="col-lg-6">
+        <div class="card h-100 border-0 shadow-lg">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">
+                    <i class="bi bi-tags me-2"></i>Gestión de Categorías
+                </h3>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-muted mb-4">
+                    Organiza tus productos en categorías para una mejor gestión y navegación.
+                </p>
+                <div class="d-grid gap-2">
+                    <a href="{% url 'comercio:productocategoria_list' %}" class="btn btn-primary btn-lg">
+                        <i class="bi bi-list-ul me-2"></i>Ver Todas las Categorías
+                    </a>
+                    <a href="{% url 'comercio:productocategoria_create' %}" class="btn btn-outline-primary">
+                        <i class="bi bi-plus-circle me-2"></i>Crear Nueva Categoría
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Productos Section -->
+    <div class="col-lg-6">
+        <div class="card h-100 border-0 shadow-lg">
+            <div class="card-header bg-success text-white">
+                <h3 class="card-title mb-0">
+                    <i class="bi bi-box-seam me-2"></i>Gestión de Productos
+                </h3>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-muted mb-4">
+                    Administra tu inventario de productos con información detallada y control de stock.
+                </p>
+                <div class="d-grid gap-2">
+                    <a href="{% url 'comercio:producto_list' %}" class="btn btn-success btn-lg">
+                        <i class="bi bi-list-ul me-2"></i>Ver Todos los Productos
+                    </a>
+                    <a href="{% url 'comercio:producto_create' %}" class="btn btn-outline-success">
+                        <i class="bi bi-plus-circle me-2"></i>Crear Nuevo Producto
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Stats -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="card bg-light border-0">
+            <div class="card-body p-4">
+                <h4 class="card-title text-center mb-4">
+                    <i class="bi bi-graph-up me-2"></i>Resumen Rápido
+                </h4>
+                <div class="row text-center">
+                    <div class="col-md-3 mb-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <i class="bi bi-tags text-primary mb-2" style="font-size: 2rem;"></i>
+                            <h5 class="mb-0">Categorías</h5>
+                            <small class="text-muted">Organizadas</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <i class="bi bi-box-seam text-success mb-2" style="font-size: 2rem;"></i>
+                            <h5 class="mb-0">Productos</h5>
+                            <small class="text-muted">En Inventario</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <i class="bi bi-check-circle text-warning mb-2" style="font-size: 2rem;"></i>
+                            <h5 class="mb-0">Stock</h5>
+                            <small class="text-muted">Disponible</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <i class="bi bi-graph-up text-info mb-2" style="font-size: 2rem;"></i>
+                            <h5 class="mb-0">Ventas</h5>
+                            <small class="text-muted">Este Mes</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Navigation -->
+<div class="row">
+    <div class="col-12 text-center">
+        <a href="{% url 'core:index' %}" class="btn btn-outline-secondary btn-lg">
+            <i class="bi bi-arrow-left me-2"></i>Volver al Inicio
+        </a>
+    </div>
+</div>
+{% endblock content %}

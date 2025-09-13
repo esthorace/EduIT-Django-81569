@@ -1,0 +1,131 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Lista de Productos - Django App{% endblock title %}
+
+{% block content %}
+<!-- Header Section -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="h2 text-primary">
+                <i class="bi bi-box-seam me-2"></i>Lista de Productos
+            </h1>
+            <a href="{% url 'comercio:producto_create' %}" class="btn btn-success">
+                <i class="bi bi-plus-circle me-2"></i>Nuevo Producto
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Search Section -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <form action="{% url 'comercio:producto_list' %}" method="get" class="row g-3">
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input type="text" 
+                                   name="consulta" 
+                                   class="form-control" 
+                                   placeholder="Buscar productos por nombre, descripción o categoría..."
+                                   value="{{ request.GET.consulta|default:'' }}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-search me-2"></i>Buscar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Products List -->
+<div class="row">
+    {% if object_list %}
+        {% for object in object_list %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <h5 class="card-title text-primary">{{ object.nombre }}</h5>
+                            <span class="badge bg-secondary">{{ object.producto_categoria }}</span>
+                        </div>
+                        
+                        <p class="card-text text-muted small mb-3">
+                            {{ object.descripcion|truncatewords:15 }}
+                        </p>
+                        
+                        <div class="row text-center mb-3">
+                            <div class="col-4">
+                                <small class="text-muted d-block">Stock</small>
+                                <strong class="text-{% if object.stock > 10 %}success{% elif object.stock > 0 %}warning{% else %}danger{% endif %}">
+                                    {{ object.stock }}
+                                </strong>
+                            </div>
+                            <div class="col-4">
+                                <small class="text-muted d-block">Precio</small>
+                                <strong class="text-success">${{ object.precio }}</strong>
+                            </div>
+                            <div class="col-4">
+                                <small class="text-muted d-block">Unidad</small>
+                                <strong>{{ object.unidad_medida }}</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'comercio:producto_detail' object.id %}" class="btn btn-outline-primary btn-sm">
+                                <i class="bi bi-eye me-1"></i>Ver Detalle
+                            </a>
+                            <div class="btn-group" role="group">
+                                <a href="{% url 'comercio:producto_update' object.id %}" class="btn btn-outline-warning btn-sm">
+                                    <i class="bi bi-pencil me-1"></i>Editar
+                                </a>
+                                <a href="{% url 'comercio:producto_delete' object.id %}" class="btn btn-outline-danger btn-sm">
+                                    <i class="bi bi-trash me-1"></i>Eliminar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-light">
+                        <small class="text-muted">
+                            <i class="bi bi-clock me-1"></i>
+                            Actualizado: {{ object.updated_at|date:"d/m/Y H:i" }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-12">
+            <div class="card text-center py-5">
+                <div class="card-body">
+                    <i class="bi bi-box-seam text-muted mb-3" style="font-size: 4rem;"></i>
+                    <h4 class="text-muted">No hay productos disponibles</h4>
+                    <p class="text-muted">Comienza agregando tu primer producto al inventario.</p>
+                    <a href="{% url 'comercio:producto_create' %}" class="btn btn-primary">
+                        <i class="bi bi-plus-circle me-2"></i>Crear Primer Producto
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+<!-- Navigation -->
+<div class="row mt-4">
+    <div class="col-12 text-center">
+        <a href="{% url 'comercio:index' %}" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left me-2"></i>Volver al Comercio
+        </a>
+    </div>
+</div>
+{% endblock content %}

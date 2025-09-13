@@ -1,0 +1,131 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Inicio - Django App{% endblock title %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="row align-items-center mb-5">
+    <div class="col-lg-6">
+        <div class="hero-content">
+            <h1 class="display-4 fw-bold text-primary mb-4">
+                ¡Bienvenido a Django App!
+            </h1>
+            <p class="lead text-muted mb-4">
+                Una aplicación moderna desarrollada con Django y Bootstrap 5. 
+                Explora nuestras funcionalidades y descubre todo lo que podemos ofrecerte.
+            </p>
+            <div class="d-flex gap-3">
+                <a href="{% url 'comercio:index' %}" class="btn btn-primary btn-lg">
+                    <i class="bi bi-shop me-2"></i>Explorar Comercio
+                </a>
+                <a href="{% url 'core:login' %}" class="btn btn-outline-primary btn-lg">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 text-center">
+        <img src="{% static 'core/img/pandora.webp' %}" 
+             alt="Django App" 
+             class="img-fluid rounded shadow-lg"
+             style="max-height: 400px;">
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h2 class="text-center mb-5">Características Principales</h2>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+                <div class="mb-3">
+                    <i class="bi bi-shop text-primary" style="font-size: 3rem;"></i>
+                </div>
+                <h5 class="card-title">Sistema de Comercio</h5>
+                <p class="card-text text-muted">
+                    Gestiona productos y categorías de manera eficiente con nuestro sistema de comercio integrado.
+                </p>
+                <a href="{% url 'comercio:index' %}" class="btn btn-outline-primary">
+                    Explorar <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+                <div class="mb-3">
+                    <i class="bi bi-shield-check text-success" style="font-size: 3rem;"></i>
+                </div>
+                <h5 class="card-title">Seguridad</h5>
+                <p class="card-text text-muted">
+                    Sistema de autenticación robusto que protege tu información y garantiza la privacidad.
+                </p>
+                <a href="{% url 'core:login' %}" class="btn btn-outline-success">
+                    Iniciar Sesión <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+                <div class="mb-3">
+                    <i class="bi bi-lightning-charge text-warning" style="font-size: 3rem;"></i>
+                </div>
+                <h5 class="card-title">Rendimiento</h5>
+                <p class="card-text text-muted">
+                    Aplicación optimizada para ofrecer la mejor experiencia de usuario con tiempos de carga rápidos.
+                </p>
+                <a href="#" class="btn btn-outline-warning">
+                    Más Info <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Stats Section -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="card bg-primary text-white">
+            <div class="card-body text-center py-5">
+                <h3 class="card-title mb-4">Estadísticas de la Aplicación</h3>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <i class="bi bi-calendar-check mb-2" style="font-size: 2rem;"></i>
+                            <h4 class="mb-0">{{ año }}</h4>
+                            <small>Año de Desarrollo</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <i class="bi bi-code-slash mb-2" style="font-size: 2rem;"></i>
+                            <h4 class="mb-0">Django</h4>
+                            <small>Framework Principal</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <i class="bi bi-bootstrap mb-2" style="font-size: 2rem;"></i>
+                            <h4 class="mb-0">Bootstrap 5</h4>
+                            <small>Framework CSS</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <i class="bi bi-heart mb-2" style="font-size: 2rem;"></i>
+                            <h4 class="mb-0">100%</h4>
+                            <small>Dedicación</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

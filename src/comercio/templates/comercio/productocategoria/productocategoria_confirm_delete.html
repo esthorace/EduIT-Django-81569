@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Eliminar Categoría de Productos
+{% endblock title %}
+
+{% block content %}
+    <p>¿Está seguro de eliminar "{{ object.nombre }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmo</button>
+    </form>
+    <button>
+        <a href="{% url 'comercio:productocategoria_list' %}">Volver</a>
+    </button>
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    {% if form.instance.pk %}
+        Actualizar Categoría de Productos
+    {% else %}
+        Crear Categoría de Productos    
+    {% endif %}
+{% endblock title %}
+
+{% block content %}
+    <h1>
+        {% if form.instance.pk %}
+            Actualizar Categoría de Productos
+        {% else %}
+            Crear Categoría de Productos    
+        {% endif %}
+    </h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <button>
+        <a href="{% url 'comercio:index' %}">Volver</a>
+    </button>
+{% endblock content %}

@@ -1,0 +1,15 @@
+[
+    {
+        "nombre": "juan",
+        "email": "juan@example.com",
+        "activo": null
+    },
+    {
+        "nombre": "santi",
+        "email": "santi@santiago.com"
+    },
+    {
+        "nombre": "cintia",
+        "email": "cintia@cint.com"
+    }
+]

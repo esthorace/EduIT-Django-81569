@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Eliminar {{ object.nombre }} - Django App{% endblock title %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-danger text-white text-center">
+                <h3 class="card-title mb-0">
+                    <i class="bi bi-exclamation-triangle me-2"></i>Confirmar Eliminación
+                </h3>
+            </div>
+            <div class="card-body p-4 text-center">
+                <div class="mb-4">
+                    <i class="bi bi-trash text-danger" style="font-size: 4rem;"></i>
+                </div>
+                
+                <h4 class="text-danger mb-3">¿Está seguro de eliminar este producto?</h4>
+                
+                <div class="card bg-light mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">{{ object.nombre }}</h5>
+                        <p class="card-text text-muted mb-2">
+                            <strong>Categoría:</strong> {{ object.producto_categoria }}
+                        </p>
+                        <p class="card-text text-muted mb-2">
+                            <strong>Stock:</strong> {{ object.stock }} {{ object.unidad_medida }}
+                        </p>
+                        <p class="card-text text-muted">
+                            <strong>Precio:</strong> ${{ object.precio }}
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="alert alert-warning" role="alert">
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+                    <strong>¡Atención!</strong> Esta acción no se puede deshacer. 
+                    El producto será eliminado permanentemente del sistema.
+                </div>
+                
+                <form method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-lg me-3">
+                        <i class="bi bi-trash me-2"></i>Sí, Eliminar
+                    </button>
+                </form>
+                
+                <a href="{% url 'comercio:producto_list' %}" class="btn btn-outline-secondary btn-lg">
+                    <i class="bi bi-arrow-left me-2"></i>Cancelar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
