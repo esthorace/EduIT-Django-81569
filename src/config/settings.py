@@ -128,6 +128,12 @@ LOGIN_REDIRECT_URL = "core:index"
 
 STATIC_ROOT = BASE_DIR / "static"
 
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
 try:
     from .settings_dev import *  # noqa
 except ModuleNotFoundError:
